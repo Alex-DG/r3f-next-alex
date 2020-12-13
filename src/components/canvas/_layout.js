@@ -1,8 +1,10 @@
 import { Suspense } from 'react'
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
 import * as THREE from 'three'
+
 import { ContactShadows } from '@react-three/drei'
 import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+
 import useDarkMode from 'use-dark-mode'
 
 const Rig = () => {
@@ -21,13 +23,13 @@ const CanvasTemplateAdds = () => {
 
   return (
     <>
-      <fog attach='fog' args={[darkMode ? 0x111827 : 0xf9fafb, 60, 70]} />
+      <fog attach='fog' args={[darkMode.value ? 0x111827 : 0xf9fafb, 60, 70]} />
       <ambientLight
-        color={new THREE.Color(darkMode ? 0x111827 : 0xf9fafb)}
+        color={new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)}
         intensity={0.5}
       />
-      {/* <directionalLight castShadow position={[2.5, 12, 12]} intensity={1} /> */}
-      <ContactShadows
+      <directionalLight castShadow position={[2.5, 12, 12]} intensity={1} />
+      {/* <ContactShadows
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, -8, 0]}
         opacity={0.75}
@@ -35,11 +37,11 @@ const CanvasTemplateAdds = () => {
         height={140}
         blur={1}
         far={9}
-      />
-      <EffectComposer>
+      /> */}
+      {/* <EffectComposer>
         <Noise opacity={0.02} />
         <Vignette eskil={false} offset={0.1} darkness={0.4} />
-      </EffectComposer>
+      </EffectComposer> */}
       <Rig />
     </>
   )
@@ -66,8 +68,7 @@ const LCanvas = ({ children }) => {
       camera={{ position: [0, 0, 0], near: 5, far: 100 }}
       pixelRatio={1}
       onCreated={({ gl, scene }) => {
-        // scene.background =
-        gl.setClearColor(new THREE.Color(darkMode ? 0x111827 : 0xf9fafb))
+        gl.setClearColor(new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)) // scene.background
       }}
     >
       <Suspense fallback={null}>

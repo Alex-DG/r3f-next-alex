@@ -33,6 +33,7 @@
     "next": "^10.0.3",
     "nodemon": "^2.0.6",
     "postcss": "^8.2.1",
+    "react-particles-webgl": "^1.0.10",
     "replace-in-file": "^6.1.0",
     "tailwindcss": "^2.0.2"
   },
@@ -85,7 +86,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-spring": "^9.0.0-rc.3",
-    "react-three-fiber": "^5.3.7",
+    "react-three-fiber": "^5.3.10",
     "three": "^0.123.0",
     "use-dark-mode": "^2.3.1"
   },

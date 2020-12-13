@@ -1,9 +1,12 @@
-import LCanvas from '@/components/canvas/_layout'
-import { useRouter } from 'next/router'
-import useStore from '@/helpers/store'
 import { useEffect, Children } from 'react'
-import Preload from '@/components/loading/loading'
+import { useRouter } from 'next/router'
 import { Helmet } from 'react-helmet'
+
+import ParticlesField from '@/components/particlesField'
+import Preload from '@/components/loading/loading'
+import LCanvas from '@/components/canvas/_layout'
+
+import useStore from '@/helpers/store'
 import { helmet } from '../config'
 
 import '../assets/styles/globals.css'
@@ -22,8 +25,10 @@ function SplitApp({ canvas, dom }) {
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   let comp = [...Component().props.children]
+
   let r3fArr = []
   let compArr = []
+
   Children.forEach(comp, (child) => {
     if (child.props && child.props.r3f) {
       r3fArr.push(child)
@@ -36,10 +41,16 @@ function MyApp({ Component, pageProps }) {
     useStore.setState({ router: router })
   }, [router])
 
-  return r3fArr.length > 0 ? (
-    <SplitApp canvas={r3fArr} dom={compArr} />
-  ) : (
-    <Component {...pageProps} />
+  return (
+    <>
+      {r3fArr.length > 0 ? (
+        <SplitApp canvas={r3fArr} dom={compArr} />
+      ) : (
+        <Component {...pageProps} />
+      )}
+
+      <ParticlesField />
+    </>
   )
 }
 

@@ -6,7 +6,7 @@ const description =
 
 export const helmet = {
   title,
-  titleTemplate: '%s - R3F Starter',
+  titleTemplate: '%s - Alex Di Guida',
   htmlAttributes: { lang: 'en' },
   meta: [
     { name: 'description', content: description },
