@@ -52,7 +52,7 @@ const config = {
 
 const ParticlesWrapper = () => {
   return (
-    <div className='relative w-screen h-screen -z-10'>
+    <div id='particle-field' className='relative w-screen h-screen'>
       <ParticleField {...{ config }} />
     </div>
   )

@@ -28,8 +28,8 @@ const CanvasTemplateAdds = () => {
         color={new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)}
         intensity={0.5}
       />
-      <directionalLight castShadow position={[2.5, 12, 12]} intensity={1} />
-      {/* <ContactShadows
+      {/* <directionalLight castShadow position={[2.5, 12, 12]} intensity={1} /> */}
+      <ContactShadows
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, -8, 0]}
         opacity={0.75}
@@ -37,11 +37,11 @@ const CanvasTemplateAdds = () => {
         height={140}
         blur={1}
         far={9}
-      /> */}
-      {/* <EffectComposer>
+      />
+      <EffectComposer>
         <Noise opacity={0.02} />
         <Vignette eskil={false} offset={0.1} darkness={0.4} />
-      </EffectComposer> */}
+      </EffectComposer>
       <Rig />
     </>
   )
@@ -52,6 +52,7 @@ const LCanvas = ({ children }) => {
 
   return (
     <Canvas
+      id='app-canvas'
       concurrent
       colorManagement
       style={{

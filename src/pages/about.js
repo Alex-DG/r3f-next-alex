@@ -1,5 +1,10 @@
 import React, { Suspense, useRef, useState } from 'react'
-import { Canvas, useFrame, useLoader, useThree } from 'react-three-fiber'
+import {
+  Canvas as R3FCanvas,
+  useFrame,
+  useLoader,
+  useThree,
+} from 'react-three-fiber'
 import { useSpring, a } from 'react-spring/three'
 import { OrbitControls } from '@react-three/drei'
 
@@ -12,16 +17,27 @@ import { perlin3 } from '@/helpers/noise'
 
 import logo from '@/assets/images/react.png'
 
-const LeftPanel = () => {
-  return <div className='absolute z-10'>TODO: Alex details</div>
+const AboutLayout = () => {
+  return (
+    <div className='absolute z-10 flex flex-row w-full h-full bg-transparent md:w-1/3 md:bg-white'>
+      <div className='flex flex-col items-center justify-center w-auto px-4 py-10 mx-auto bg-white h-1/2 top-1/2 md:h-full md:top-0 transform translate-y-1/2 md:translate-y-0'>
+        <span>Photo</span>
+        <span>Alexandre</span>
+        <span>Di Guida</span>
+        <span>Frontend</span>
+        <span>Web & Mobile</span>
+        <span>Developer</span>
+      </div>
+    </div>
+  )
 }
 
 const Dom = () => {
   return (
-    <div>
+    <>
       <Helmet title='About' />
-      <LeftPanel />
-    </div>
+      <AboutLayout />
+    </>
   )
 }
 
@@ -94,22 +110,15 @@ const Controls = ({ enableZoom = false }) => {
   return <OrbitControls {...{ enableZoom }} args={[camera, gl.domElement]} />
 }
 
-const CanvasAnimatedShape = () => {
+const Canvas = () => {
   return (
-    <Suspense fallback={null}>
-      <Shape />
-      <Controls />
-    </Suspense>
+    <group position={[0, 0, -15]}>
+      <Suspense fallback={null}>
+        <Shape />
+        <Controls />
+      </Suspense>
+    </group>
   )
-
-  // return (
-  //   <Canvas className='absolute z-40 ' gl={{ preserveDrawingBuffer: true }}>
-  //     <Suspense fallback={null}>
-  //       <Shape />
-  //       <Controls />
-  //     </Suspense>
-  //   </Canvas>
-  // )
 }
 
 const Page = () => {
@@ -117,7 +126,7 @@ const Page = () => {
 
   return (
     <>
-      <CanvasAnimatedShape r3f />
+      <Canvas r3f />
       <Dom />
     </>
   )

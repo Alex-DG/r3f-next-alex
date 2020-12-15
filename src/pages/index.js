@@ -16,7 +16,7 @@ const Welcome = ({ router }) => {
       const funcs = [
         () => set(true),
         () => set(false),
-        () => router.push(`/about`),
+        () => router.replace(`/about`),
       ]
 
       let i = 0
