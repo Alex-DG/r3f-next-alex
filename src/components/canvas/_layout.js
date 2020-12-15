@@ -19,7 +19,7 @@ const Rig = () => {
 }
 
 const CanvasTemplateAdds = () => {
-  const darkMode = useDarkMode()
+  const darkMode = useDarkMode(false)
 
   return (
     <>
@@ -48,7 +48,7 @@ const CanvasTemplateAdds = () => {
 }
 
 const LCanvas = ({ children }) => {
-  const darkMode = useDarkMode()
+  const darkMode = useDarkMode(false)
 
   return (
     <Canvas
