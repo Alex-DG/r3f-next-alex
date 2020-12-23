@@ -1,19 +1,12 @@
-import { Suspense, useEffect, useState, useRef } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-import * as THREE from 'three'
-
-import { useFrame, useLoader, useThree } from 'react-three-fiber'
-import { useSpring, a } from 'react-spring/three'
-import { OrbitControls } from '@react-three/drei'
-
-import Bird from '@/components/canvas/Bird/Bird'
+import Bird from '@/components/canvas/Bird'
+import Shape from '@/components/canvas/Shape'
+import Controls from '@/components/canvas/Controls'
 import Trail from '@/components/trail'
 
 import useStore from '@/helpers/store'
-import { perlin3 } from '@/helpers/noise'
-
-import logo from '@/assets/images/react.png'
 
 const Welcome = ({ open }) => {
   return (
@@ -56,69 +49,26 @@ const Birds = () => {
   })
 }
 
-const Shape = () => {
-  const texture = useLoader(THREE.TextureLoader, logo)
-  const [expand, setExpand] = useState(true)
-
-  const sphereGeometryRef = useRef()
-
-  const inputScale = 1.3
-
-  useFrame(({ clock }) => {
-    const sphereGeometry = sphereGeometryRef.current
-    const { vertices } = sphereGeometry
-    const time = clock.getElapsedTime()
-
-    for (let i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
-      const p = vertices[i]
-      p.normalize().multiplyScalar(
-        1 +
-          0.3 *
-            perlin3(
-              p.x * inputScale + time,
-              p.y * inputScale - time,
-              p.z * inputScale
-            )
-      )
-    }
-
-    sphereGeometry.verticesNeedUpdate = true
-    sphereGeometry.computeVertexNormals()
-    sphereGeometry.normalsNeedUpdate = true
-  })
-
-  const handleExpand = () => setExpand(!expand)
-
-  const { scale } = useSpring({
-    scale: expand ? [1.4, 1.4, 1.4] : [1, 1, 1],
-  })
-
-  return (
-    <a.mesh onClick={handleExpand} {...{ scale }}>
-      <sphereGeometry
-        attach='geometry'
-        args={[1.0, 34, 34]}
-        ref={sphereGeometryRef}
-      />
-      <meshBasicMaterial attach='material' map={texture} wireframe={expand} />
-    </a.mesh>
-  )
-}
-
 const Canvas = () => {
   return (
-    <Suspense fallback={null}>
-      <Shape position={[0, 0, 0]} />
-    </Suspense>
-  )
+    <>
+      <group position={[-19, 0, 0]}>
+        <ambientLight intensity={1} />
+        <pointLight position={[40, 40, 40]} />
 
-  return (
-    <group position={[0, 0, -25]}>
-      <ambientLight intensity={2} />
-      <pointLight position={[40, 40, 40]} />
+        <Suspense fallback={null}>
+          <Birds />
+        </Suspense>
+      </group>
 
-      <Suspense fallback={null}>{/* <Birds /> */}</Suspense>
-    </group>
+      <group position={[-2, 0, 0]}>
+        <Suspense fallback={null}>
+          <Shape />
+        </Suspense>
+      </group>
+
+      <Controls />
+    </>
   )
 }
 
