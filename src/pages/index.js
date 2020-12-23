@@ -1,34 +1,14 @@
 import { Suspense, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-import Bird from '@/components/canvas/Bird/Bird'
+import Bird from '@/components/canvas/Bird'
+import Shape from '@/components/canvas/Shape'
+import Controls from '@/components/canvas/Controls'
 import Trail from '@/components/trail'
 
 import useStore from '@/helpers/store'
 
-const Welcome = ({ router }) => {
-  const [open, set] = useState(false)
-
-  useEffect(() => {
-    let timer
-
-    if (router.route) {
-      const funcs = [
-        () => set(true),
-        () => set(false),
-        () => router.replace(`/about`),
-      ]
-
-      let i = 0
-      timer = setInterval(() => {
-        funcs[i++]()
-        if (i === funcs.length) clearInterval(timer)
-      }, 2500)
-    }
-
-    return () => clearInterval(timer)
-  }, [router])
-
+const Welcome = ({ open }) => {
   return (
     <>
       <Trail
@@ -71,23 +51,55 @@ const Birds = () => {
 
 const Canvas = () => {
   return (
-    <group position={[0, 0, -25]}>
-      <ambientLight intensity={2} />
-      <pointLight position={[40, 40, 40]} />
+    <>
+      <group position={[-19, 0, 0]}>
+        <ambientLight intensity={1} />
+        <pointLight position={[40, 40, 40]} />
 
-      <Suspense fallback={null}>
-        <Birds />
-      </Suspense>
-    </group>
+        <Suspense fallback={null}>
+          <Birds />
+        </Suspense>
+      </group>
+
+      <group position={[-2, 0, 0]}>
+        <Suspense fallback={null}>
+          <Shape />
+        </Suspense>
+      </group>
+
+      <Controls />
+    </>
   )
 }
 
 const Dom = () => {
   const router = useStore((state) => state.router)
+  const [open, set] = useState(false)
+
+  useEffect(() => {
+    let timer
+
+    if (router.route) {
+      const funcs = [
+        () => set(true),
+        () => set(false),
+        // () => router.replace(`/about`),
+      ]
+
+      let i = 0
+      timer = setInterval(() => {
+        funcs[i++]()
+        if (i === funcs.length) clearInterval(timer)
+      }, 2500)
+    }
+
+    return () => clearInterval(timer)
+  }, [router])
+
   return (
     <div>
       <Helmet title='Welcome' />
-      <Welcome {...{ router }} />
+      <Welcome {...{ open }} />
     </div>
   )
 }
