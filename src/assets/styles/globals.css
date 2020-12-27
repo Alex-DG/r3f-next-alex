@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Movement';
+  src: url('/fonts/Movement/MovementV.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,5 +22,4 @@
     bottom: 0;
     overflow: hidden;
   }
-  
 }

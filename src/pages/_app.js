@@ -2,11 +2,15 @@ import { useEffect, Children } from 'react'
 import { useRouter } from 'next/router'
 import { Helmet } from 'react-helmet'
 
+import Head from 'next/head'
+import Link from 'next/link'
+
 import ParticlesField from '@/components/particlesField'
 import Preload from '@/components/loading/loading'
 import LCanvas from '@/components/canvas/_layout'
 
 import useStore from '@/helpers/store'
+
 import { helmet } from '../config'
 
 import '../assets/styles/globals.css'
@@ -43,6 +47,23 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <div>
+        <Head>
+          <link
+            rel='preload'
+            href='/fonts/Movement/MovementV.ttf'
+            as='font'
+            crossOrigin=''
+          />
+          <link
+            rel='preload'
+            href='/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff'
+            as='font'
+            crossOrigin=''
+          />
+        </Head>
+      </div>
+
       {r3fArr.length > 0 ? (
         <SplitApp canvas={r3fArr} dom={compArr} />
       ) : (
