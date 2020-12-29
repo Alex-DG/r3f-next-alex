@@ -52,6 +52,8 @@ const Birds = () => {
 }
 
 const Canvas = () => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
   return (
     <>
       <group position={[-19, 0, 0]}>
@@ -63,11 +65,13 @@ const Canvas = () => {
         </Suspense>
       </group>
 
-      <group position={[-2, 0, 0]}>
-        <Suspense fallback={null}>
-          <Shape />
-        </Suspense>
-      </group>
+      {!isMobile && (
+        <group position={[-2, 0, 0]}>
+          <Suspense fallback={null}>
+            <Shape />
+          </Suspense>
+        </group>
+      )}
 
       <Controls />
     </>
