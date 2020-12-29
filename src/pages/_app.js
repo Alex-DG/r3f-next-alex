@@ -47,22 +47,20 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <div>
-        <Head>
-          <link
-            rel='preload'
-            href='/fonts/Movement/MovementV.ttf'
-            as='font'
-            crossOrigin=''
-          />
-          <link
-            rel='preload'
-            href='/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff'
-            as='font'
-            crossOrigin=''
-          />
-        </Head>
-      </div>
+      <Head>
+        <link
+          rel='preload'
+          href='/fonts/Movement/MovementV.ttf'
+          as='font'
+          crossOrigin=''
+        />
+        <link
+          rel='preload'
+          href='/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff'
+          as='font'
+          crossOrigin=''
+        />
+      </Head>
 
       {r3fArr.length > 0 ? (
         <SplitApp canvas={r3fArr} dom={compArr} />
