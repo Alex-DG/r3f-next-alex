@@ -21,7 +21,7 @@ const config = {
   lines: {
     colorMode: 'solid',
     color: Color.GREY,
-    transparency: 0.6,
+    transparency: 0.5,
     limitConnections: true,
     maxConnections: 20,
     minDistance: 400,
@@ -30,7 +30,7 @@ const config = {
   particles: {
     colorMode: 'solid',
     color: Color.GREY,
-    transparency: 0.7,
+    transparency: 0.6,
     shape: 'circle',
     boundingBox: 'canvas',
     count: 130,

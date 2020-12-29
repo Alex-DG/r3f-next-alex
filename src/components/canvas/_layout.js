@@ -76,6 +76,7 @@ const LCanvas = ({ children }) => {
       <Suspense fallback={null}>
         <CanvasTemplateAdds />
       </Suspense>
+
       {children}
     </Canvas>
   )

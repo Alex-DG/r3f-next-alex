@@ -35,6 +35,7 @@
     "postcss": "^8.2.1",
     "react-particles-webgl": "^1.0.10",
     "replace-in-file": "^6.1.0",
+    "styled-components": "^5.2.1",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
