@@ -2,7 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 import alex from '@/assets/images/me.jpg'
-import Breakpoints from '@/helpers/breakpoints'
+
+import GithubIcon from './icons/GithubIcon'
+import TwitterIcon from './icons/TwitterIcon'
+import StackoverflowIcon from './icons/StackoverflowIcon'
+import LinkedinIcon from './icons/LinkedinIcon'
+
+const socialUrl = {
+  github: 'https://github.com/alex-dg',
+  linkedin: 'https://www.linkedin.com/in/alexandre-di-guida-17650698/',
+  twitter: 'https://twitter.com/Alex_dg_uk',
+  stackoverflow: 'https://stackoverflow.com/users/2493252/alexdg',
+  wordpress: 'https://scottish-escapes.com/',
+}
 
 const CardContainer = styled.section`
   background-color: #ffffff;
@@ -35,7 +47,22 @@ const CardContainer = styled.section`
     font-family: 'Movement';
   }
 
-  > :nth-child(2) {
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    a {
+      cursor: pointer;
+    }
+
+    svg {
+      width: 1.2em;
+    }
+  }
+
+  p {
     margin-top: 1em;
   }
 `
@@ -69,7 +96,7 @@ const Card = () => {
         <Image src={alex} alt='Alex' loading='lazy' />
       </Figure>
 
-      <div className='details'>
+      <p className='details'>
         <h1 className='name'>Alexandre Di Guida</h1>
 
         <h2 className='role'>
@@ -77,7 +104,25 @@ const Card = () => {
         </h2>
         <h2 className='role'>Web + Mobile App</h2>
         <h2 className='dev'>[ Developer ]</h2>
-      </div>
+      </p>
+
+      <p className='links'>
+        <a href={socialUrl.twitter} target='_blank'>
+          <TwitterIcon />
+        </a>
+
+        <a href={socialUrl.github} target='_blank'>
+          <GithubIcon />
+        </a>
+
+        <a href={socialUrl.stackoverflow} target='_blank'>
+          <StackoverflowIcon />
+        </a>
+
+        <a href={socialUrl.linkedin} target='_blank'>
+          <LinkedinIcon />
+        </a>
+      </p>
     </CardContainer>
   )
 }

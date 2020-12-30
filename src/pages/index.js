@@ -5,7 +5,7 @@ import Bird from '@/components/canvas/Bird'
 import Shape from '@/components/canvas/Shape'
 import Controls from '@/components/canvas/Controls'
 
-import Card from '@/components/Card'
+import Card from '@/components/card'
 import Trail from '@/components/trail'
 
 import useStore from '@/helpers/store'
