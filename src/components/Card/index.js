@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 import alex from '@/assets/images/me.jpg'
 
-import GithubIcon from './icons/GithubIcon'
-import TwitterIcon from './icons/TwitterIcon'
-import StackoverflowIcon from './icons/StackoverflowIcon'
-import LinkedinIcon from './icons/LinkedinIcon'
+import GithubIcon from './icons/github'
+import TwitterIcon from './icons/twitter'
+import StackoverflowIcon from './icons/stackoverflow'
+import LinkedinIcon from './icons/linkedin'
 
 const socialUrl = {
   github: 'https://github.com/alex-dg',
@@ -22,7 +22,7 @@ const CardContainer = styled.section`
 
   h1,
   h2 {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 
   .details {
@@ -59,6 +59,9 @@ const CardContainer = styled.section`
 
     svg {
       width: 1.2em;
+    }
+    svg:hover > path {
+      fill: #61dafb;
     }
   }
 

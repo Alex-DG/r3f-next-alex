@@ -1,14 +1,15 @@
 import { Suspense, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-import Bird from '@/components/canvas/Bird'
-import Shape from '@/components/canvas/Shape'
-import Controls from '@/components/canvas/Controls'
+import Bird from '@/components/canvas/bird'
+import Shape from '@/components/canvas/shape'
+import Controls from '@/components/canvas/controls'
 
 import Card from '@/components/card'
 import Trail from '@/components/trail'
 
 import useStore from '@/helpers/store'
+import useWindowSize from '@/helpers/hooks/useWindowSize'
 
 const Welcome = ({ open }) => {
   return (
@@ -52,7 +53,9 @@ const Birds = () => {
 }
 
 const Canvas = () => {
+  const { width } = useWindowSize()
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  const showShape = !isMobile && width > 768
 
   return (
     <>
@@ -65,7 +68,7 @@ const Canvas = () => {
         </Suspense>
       </group>
 
-      {!isMobile && (
+      {showShape && (
         <group position={[-2, 0, 0]}>
           <Suspense fallback={null}>
             <Shape />
