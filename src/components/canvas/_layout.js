@@ -1,11 +1,21 @@
 import { Suspense } from 'react'
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
+import { HTML } from '@react-three/drei'
 import * as THREE from 'three'
 
 import { ContactShadows } from '@react-three/drei'
 import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
+import { config } from '@/helpers/particles/config'
+
+import ParticleField from 'react-particles-webgl'
 import useDarkMode from 'use-dark-mode'
+
+const ParticlesBackground = () => (
+  <div id='particle-field' className='relative w-screen h-screen'>
+    <ParticleField {...{ config }} />
+  </div>
+)
 
 const Rig = () => {
   const { camera, mouse } = useThree()
@@ -23,6 +33,10 @@ const CanvasTemplateAdds = () => {
 
   return (
     <>
+      <HTML prepend fullscreen zIndexRange={[100, 0]}>
+        <ParticlesBackground />
+      </HTML>
+
       <fog attach='fog' args={[darkMode.value ? 0x111827 : 0xf9fafb, 60, 70]} />
       <ambientLight
         color={new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)}

@@ -46,7 +46,7 @@ const Shape = ({ ...props }) => {
   const handleExpand = () => setExpand(!expand)
 
   const { scale } = useSpring({
-    scale: expand ? [1.5, 1.5, 1.5] : [1, 1, 1],
+    scale: expand ? [1.5, 1.5, 1.5] : [2.0, 2.0, 2.0],
   })
 
   return (
@@ -54,7 +54,7 @@ const Shape = ({ ...props }) => {
       <a.mesh onClick={handleExpand} scale={scale} {...props}>
         <sphereGeometry
           attach='geometry'
-          args={[1.0, 44, 44]}
+          args={[1.0, 40, 40]}
           ref={sphereGeometryRef}
         />
         <meshBasicMaterial

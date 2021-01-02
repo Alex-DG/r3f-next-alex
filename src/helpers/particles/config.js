@@ -1,10 +1,4 @@
-import ParticleField from 'react-particles-webgl'
-
-const Color = {
-  GREY: '#282c34',
-}
-
-const config = {
+export const config = {
   showCube: false,
   dimension: '2D',
   velocity: 1.0,
@@ -20,7 +14,7 @@ const config = {
   },
   lines: {
     colorMode: 'solid',
-    color: Color.GREY,
+    color: '#282c34',
     transparency: 0.5,
     limitConnections: true,
     maxConnections: 20,
@@ -29,7 +23,7 @@ const config = {
   },
   particles: {
     colorMode: 'solid',
-    color: Color.GREY,
+    color: '#282c34',
     transparency: 0.6,
     shape: 'circle',
     boundingBox: 'canvas',
@@ -49,13 +43,3 @@ const config = {
   },
   limitConnections: false,
 }
-
-const ParticlesWrapper = () => {
-  return (
-    <div id='particle-field' className='relative w-screen h-screen'>
-      <ParticleField {...{ config }} />
-    </div>
-  )
-}
-
-export default ParticlesWrapper

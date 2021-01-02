@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       )}
 
-      <ParticlesField />
+      {/* <ParticlesField /> */}
     </>
   )
 }

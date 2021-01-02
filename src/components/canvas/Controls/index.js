@@ -5,7 +5,7 @@ import { OrbitControls } from '@react-three/drei'
 const Controls = ({ enableZoom = false, autoRotate = false }) => {
   const { gl, camera } = useThree()
 
-  useFrame(({ clock }) => {
+  useFrame(() => {
     camera.position.x = 5
     camera.position.y = 0
     camera.position.z = 0
