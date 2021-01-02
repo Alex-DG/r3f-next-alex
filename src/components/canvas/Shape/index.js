@@ -46,7 +46,7 @@ const Shape = ({ ...props }) => {
   const handleExpand = () => setExpand(!expand)
 
   const { scale } = useSpring({
-    scale: expand ? [1.5, 1.5, 1.5] : [2.0, 2.0, 2.0],
+    scale: expand ? [1.6, 1.6, 1.6] : [2.2, 2.2, 2.2],
   })
 
   return (

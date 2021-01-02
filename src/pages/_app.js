@@ -3,9 +3,7 @@ import { useRouter } from 'next/router'
 import { Helmet } from 'react-helmet'
 
 import Head from 'next/head'
-import Link from 'next/link'
 
-import ParticlesField from '@/components/particlesField'
 import Preload from '@/components/loading/loading'
 import LCanvas from '@/components/canvas/_layout'
 
@@ -67,8 +65,6 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <Component {...pageProps} />
       )}
-
-      {/* <ParticlesField /> */}
     </>
   )
 }
