@@ -49,7 +49,7 @@ const CanvasTemplateAdds = () => {
 
 const LCanvas = ({ children }) => {
   const darkMode = useDarkMode(false)
-  console.log({ children })
+
   return (
     <Canvas
       id='app-canvas'
