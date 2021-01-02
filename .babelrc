@@ -11,6 +11,7 @@
     ]
   ],
   "plugins": [
-    "babel-plugin-glsl"
+    "babel-plugin-glsl",
+    ["styled-components", { "ssr": true }]
   ]
 }
