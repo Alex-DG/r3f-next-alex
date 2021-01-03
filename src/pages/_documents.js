@@ -1,6 +1,9 @@
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+/**
+ * The server-side rendering fetch the styles before rendering the page.
+ */
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
