@@ -21,26 +21,32 @@ const Shape = ({ ...props }) => {
   useFrame(({ clock }) => {
     const sphereGeometry = sphereGeometryRef.current
 
-    const { vertices } = sphereGeometry
+    if (sphereGeometry && sphereGeometry.vertices) {
+      const { vertices } = sphereGeometry
 
-    const time = clock.getElapsedTime()
+      const time = clock.getElapsedTime()
 
-    for (let i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
-      const p = vertices[i]
-      p.normalize().multiplyScalar(
-        1 +
-          0.3 *
-            perlin3(
-              p.x * inputScale + time,
-              p.y * inputScale - time,
-              p.z * inputScale
-            )
-      )
+      for (
+        let i = 0, verticesLength = vertices.length;
+        i < verticesLength;
+        i++
+      ) {
+        const p = vertices[i]
+        p.normalize().multiplyScalar(
+          1 +
+            0.3 *
+              perlin3(
+                p.x * inputScale + time,
+                p.y * inputScale - time,
+                p.z * inputScale
+              )
+        )
+      }
+
+      sphereGeometry.verticesNeedUpdate = true
+      sphereGeometry.computeVertexNormals()
+      sphereGeometry.normalsNeedUpdate = true
     }
-
-    sphereGeometry.verticesNeedUpdate = true
-    sphereGeometry.computeVertexNormals()
-    sphereGeometry.normalsNeedUpdate = true
   })
 
   const handleExpand = () => setExpand(!expand)
