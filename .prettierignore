@@ -7,3 +7,4 @@ node_modules
 package.json
 .eslintrc.js
 babel.config.js
+noflash.js

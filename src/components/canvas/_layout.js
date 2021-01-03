@@ -8,6 +8,8 @@ import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
 import { config } from '@/helpers/particles/config'
 
+import Toggle from './toggle'
+
 import ParticleField from 'react-particles-webgl'
 import useDarkMode from 'use-dark-mode'
 
@@ -29,7 +31,9 @@ const Rig = () => {
 }
 
 const CanvasTemplateAdds = () => {
-  const darkMode = useDarkMode(false)
+  const { value } = useDarkMode(false, {
+    classNameDark: 'dark',
+  })
 
   return (
     <>
@@ -37,12 +41,13 @@ const CanvasTemplateAdds = () => {
         <ParticlesBackground />
       </HTML>
 
-      <fog attach='fog' args={[darkMode.value ? 0x111827 : 0xf9fafb, 60, 70]} />
+      <fog attach='fog' args={[value ? 0x111827 : 0xf9fafb, 60, 70]} />
+
       <ambientLight
-        color={new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)}
+        color={new THREE.Color(value ? 0x111827 : 0xf9fafb)}
         intensity={0.5}
       />
-      {/* <directionalLight castShadow position={[2.5, 12, 12]} intensity={1} /> */}
+
       <ContactShadows
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, -8, 0]}
@@ -62,37 +67,44 @@ const CanvasTemplateAdds = () => {
 }
 
 const LCanvas = ({ children }) => {
-  const darkMode = useDarkMode(false)
+  const { value, toggle } = useDarkMode(false, {
+    classNameDark: 'dark',
+  })
 
   return (
-    <Canvas
-      id='app-canvas'
-      concurrent
-      colorManagement
-      style={{
-        position: 'absolute',
-        top: 0,
-      }}
-      gl={{
-        powerPreference: 'high-performance',
-        antialias: false,
-        stencil: false,
-        depth: false,
-        alpha: false,
-      }}
-      camera={{ position: [0, 0, 0], near: 5, far: 100 }}
-      pixelRatio={1}
-      onCreated={({ gl, scene }) => {
-        gl.setClearColor(new THREE.Color(0xf9fafb)) // scene.background
-        // gl.setClearColor(new THREE.Color(darkMode.value ? 0x111827 : 0xf9fafb)) // scene.background
-      }}
-    >
-      <Suspense fallback={null}>
-        <CanvasTemplateAdds />
-      </Suspense>
+    <>
+      <Canvas
+        id='app-canvas'
+        concurrent
+        colorManagement
+        style={{
+          position: 'absolute',
+          top: 0,
+        }}
+        gl={{
+          powerPreference: 'high-performance',
+          antialias: false,
+          stencil: false,
+          depth: false,
+          alpha: false,
+        }}
+        camera={{ position: [0, 0, 0], near: 5, far: 100 }}
+        pixelRatio={1}
+        onCreated={({ gl, scene }) => {
+          value
+            ? gl.setClearColor(new THREE.Color(0x111827))
+            : gl.setClearColor(new THREE.Color(0xf9fafb))
+        }}
+      >
+        <Suspense fallback={null}>
+          <CanvasTemplateAdds />
+        </Suspense>
 
-      {children}
-    </Canvas>
+        {children}
+      </Canvas>
+
+      <Toggle onToggle={toggle} value={value} />
+    </>
   )
 }
 
