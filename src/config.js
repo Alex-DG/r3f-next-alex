@@ -1,8 +1,8 @@
 import share from './assets/images/share.png'
 
-const title = 'Threejs Next Starter'
+const title = 'Alex DG ~ Frontend Web+Mobile App Developer'
 const description =
-  'The easiest and fastest way to create a 3D website using React Three Fiber and NextJS'
+  'Alexandre Di Guida, French web and mobile app developer with more than 6 years of professionnal experience in the IT industry. I worked in France, England and in Scotland.'
 
 export const helmet = {
   title,
