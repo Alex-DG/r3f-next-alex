@@ -1,13 +1,8 @@
 import React from 'react'
-import useDarkMode from 'use-dark-mode'
 
 import { ToggleContainer } from './styles'
 
-const Toggle = ({ onToggle, ...props }) => {
-  const { value } = useDarkMode(false, {
-    classNameDark: 'dark',
-  })
-
+const Toggle = ({ value, onToggle, ...props }) => {
   return (
     <ToggleContainer>
       <div id='toggle-btn'>
