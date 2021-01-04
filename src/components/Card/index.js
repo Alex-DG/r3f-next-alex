@@ -109,22 +109,24 @@ const Card = () => {
   return (
     <CardContainer
       style={props}
-      className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-black'
+      className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-cool-dark'
     >
       <Figure>
         <Image src={alex} alt='Alex' loading='lazy' />
       </Figure>
 
       <p className='details'>
-        <h1 className='text-gray-900 name dark:text-white'>
+        <h1 className='text-cool-dark name dark:text-white'>
           Alexandre Di Guida
         </h1>
 
-        <h2 className='role ext-gray-900 dark:text-white'>
+        <h2 className='role text-cool-dark dark:text-white'>
           {'< '}Front End{' >'}
         </h2>
-        <h2 className='text-gray-900 role dark:text-white'>Web + Mobile App</h2>
-        <h2 className='text-gray-900 dev dark:text-white'>[ Developer ]</h2>
+        <h2 className='text-cool-dark role dark:text-white'>
+          Web + Mobile App
+        </h2>
+        <h2 className='text-cool-dark dev dark:text-white'>[ Developer ]</h2>
       </p>
 
       <p className='links'>

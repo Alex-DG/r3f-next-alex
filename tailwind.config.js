@@ -2,6 +2,10 @@ module.exports = {
   purge: ['./src/pages/**/*.js', './src/components/**/*.js'], // remove unused styles in production
   darkMode: 'class',
   theme: {
+    colors: {
+      white: '#ffffff',
+      'cool-dark': '#363537',
+    },
     maxWidth: {
       170: '170px',
     },
