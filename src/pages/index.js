@@ -6,24 +6,9 @@ import Shape from '@/components/canvas/shape'
 import Controls from '@/components/canvas/controls'
 
 import Card from '@/components/card'
-import Trail from '@/components/trail'
 
 import useStore from '@/helpers/store'
 import useWindowSize from '@/helpers/hooks/useWindowSize'
-
-const Welcome = ({ open }) => {
-  return (
-    <>
-      <Trail
-        {...{ open }}
-        className='absolute z-10 w-full p-2 mx-auto text-3xl text-center text-black-100 dark:text-white-100 inset-y-1/2'
-      >
-        <h1>Welcome</h1>
-        <h1>Bienvenue.</h1>
-      </Trail>
-    </>
-  )
-}
 
 const Birds = () => {
   return new Array(6).fill().map((_, i) => {
@@ -81,37 +66,12 @@ const Canvas = () => {
   )
 }
 
-const Dom = () => {
-  const router = useStore((state) => state.router)
-  const [open, set] = useState(false)
-
-  useEffect(() => {
-    let timer
-
-    if (router.route) {
-      const funcs = [
-        () => set(true),
-        () => set(false),
-        // () => router.replace(`/about`),
-      ]
-
-      let i = 0
-      timer = setInterval(() => {
-        funcs[i++]()
-        if (i === funcs.length) clearInterval(timer)
-      }, 2500)
-    }
-
-    return () => clearInterval(timer)
-  }, [router])
-
-  return (
-    <div>
-      <Helmet title='Welcome' />
-      <Card />
-    </div>
-  )
-}
+const Dom = () => (
+  <>
+    <Helmet title='Welcome' />
+    <Card />
+  </>
+)
 
 const Page = () => {
   useStore.setState({ loading: false })

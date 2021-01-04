@@ -1,4 +1,3 @@
-// custom pages/404.js !! Do not remove please or it will break build
 export default function Error() {
-  return <h1>404 - Page Not Found d-_-b</h1>
+  return <h1>404 - Page not found, no Birds here!</h1>
 }

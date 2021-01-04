@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useDarkMode from 'use-dark-mode'
 
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring, config } from 'react-spring'
 
 import alex from '@/assets/images/me.jpg'
 
@@ -99,16 +99,24 @@ const Card = () => {
     classNameDark: 'dark',
   })
 
-  const enabled = value
+  const [show, set] = useState(false)
 
-  const props = useSpring({
-    opacity: 1,
+  const fadeStyles = useSpring({
+    config: { ...config.stiff },
     from: { opacity: 0 },
+    to: {
+      opacity: show ? 1 : 0,
+    },
   })
+
+  useEffect(() => {
+    const timeout = setTimeout(() => set(!show), 1000)
+    return () => clearTimeout(timeout)
+  }, [])
 
   return (
     <CardContainer
-      style={props}
+      style={fadeStyles}
       className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-cool-dark'
     >
       <Figure>
@@ -131,19 +139,19 @@ const Card = () => {
 
       <p className='links'>
         <a href={socialUrl.twitter} target='_blank'>
-          <TwitterIcon darkMode={enabled} />
+          <TwitterIcon darkMode={value} />
         </a>
 
         <a href={socialUrl.github} target='_blank'>
-          <GithubIcon darkMode={enabled} />
+          <GithubIcon darkMode={value} />
         </a>
 
         <a href={socialUrl.stackoverflow} target='_blank'>
-          <StackoverflowIcon darkMode={enabled} />
+          <StackoverflowIcon darkMode={value} />
         </a>
 
         <a href={socialUrl.linkedin} target='_blank'>
-          <LinkedinIcon darkMode={enabled} />
+          <LinkedinIcon darkMode={value} />
         </a>
       </p>
     </CardContainer>
