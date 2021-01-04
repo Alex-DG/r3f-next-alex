@@ -1,4 +1,4 @@
-export const config = {
+export const defaultConfig = {
   showCube: false,
   dimension: '2D',
   velocity: 1.0,
@@ -14,8 +14,8 @@ export const config = {
   },
   lines: {
     colorMode: 'solid',
-    color: '#282c34',
-    transparency: 0.5,
+    color: '#000000',
+    transparency: 0.4,
     limitConnections: true,
     maxConnections: 20,
     minDistance: 400,
@@ -23,13 +23,13 @@ export const config = {
   },
   particles: {
     colorMode: 'solid',
-    color: '#282c34',
-    transparency: 0.6,
+    color: '#000000',
+    transparency: 0.45,
     shape: 'circle',
     boundingBox: 'canvas',
-    count: 130,
+    count: 120,
     minSize: 20,
-    maxSize: 45,
+    maxSize: 40,
     visible: true,
   },
   cameraControls: {
