@@ -1,30 +1,12 @@
-import { useFrame, useThree } from 'react-three-fiber'
+import React from 'react'
 import { HTML } from '@react-three/drei'
 import * as THREE from 'three'
 
 import { ContactShadows } from '@react-three/drei'
 import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
-import { defaultConfig } from '@/helpers/particles/config'
-
-import ParticleField from 'react-particles-webgl'
-
-const ParticlesBackground = () => (
-  <div id='particle-field' className='relative w-screen h-screen'>
-    <ParticleField config={defaultConfig} />
-  </div>
-)
-
-const Rig = () => {
-  const { camera, mouse } = useThree()
-  const vec = new THREE.Vector3()
-  return useFrame(() =>
-    camera.position.lerp(
-      vec.set(mouse.x * 2, mouse.y * 1, camera.position.z),
-      0.02
-    )
-  )
-}
+import ParticlesBackground from './background'
+import Rig from './rig'
 
 const Effects = () => {
   return (
@@ -46,13 +28,15 @@ const Effects = () => {
         blur={1}
         far={9}
       />
+
       <EffectComposer>
         <Noise opacity={0.02} />
         <Vignette eskil={false} offset={0.1} darkness={0.4} />
       </EffectComposer>
+
       <Rig />
     </>
   )
 }
 
-export default Effects
+export default React.memo(Effects)
