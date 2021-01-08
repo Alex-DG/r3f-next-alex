@@ -4,7 +4,7 @@ import share from '../../assets/images/share.png'
 const name = 'Alexandre Di Guida'
 
 const title = 'Alex DG ~ Frontend Web+Mobile App Developer'
-const url = 'http://r3f-next-alex.vercel.app/'
+const url = 'https://alexdiguida.com/'
 const description = `${name}, French web and mobile app developer with more than 6 years of professionnal experience in the IT industry. I worked in France, England and in Scotland on web and mobile app technologies.`
 
 const Header = () => {
