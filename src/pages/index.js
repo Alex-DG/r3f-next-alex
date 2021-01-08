@@ -1,5 +1,5 @@
-import { Suspense, useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Suspense } from 'react'
+import Head from 'next/head'
 
 import Bird from '@/components/canvas/bird'
 import Shape from '@/components/canvas/shape'
@@ -68,7 +68,10 @@ const Canvas = () => {
 
 const Dom = () => (
   <>
-    <Helmet title='Welcome' />
+    <Head>
+      <title>Bonjour 🥖</title>
+    </Head>
+
     <Card />
   </>
 )

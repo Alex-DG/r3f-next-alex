@@ -110,7 +110,7 @@ const Card = () => {
   })
 
   useEffect(() => {
-    const timeout = setTimeout(() => set(!show), 1000)
+    const timeout = setTimeout(() => !show && set(true), 1000)
     return () => clearTimeout(timeout)
   }, [])
 
@@ -138,19 +138,23 @@ const Card = () => {
       </p>
 
       <p className='links'>
-        <a href={socialUrl.twitter} target='_blank'>
+        <a href={socialUrl.twitter} target='_blank' rel='noopener noreferrer'>
           <TwitterIcon darkMode={value} />
         </a>
 
-        <a href={socialUrl.github} target='_blank'>
+        <a href={socialUrl.github} target='_blank' rel='noopener noreferrer'>
           <GithubIcon darkMode={value} />
         </a>
 
-        <a href={socialUrl.stackoverflow} target='_blank'>
+        <a
+          href={socialUrl.stackoverflow}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <StackoverflowIcon darkMode={value} />
         </a>
 
-        <a href={socialUrl.linkedin} target='_blank'>
+        <a href={socialUrl.linkedin} target='_blank' rel='noopener noreferrer'>
           <LinkedinIcon darkMode={value} />
         </a>
       </p>

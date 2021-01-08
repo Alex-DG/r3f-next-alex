@@ -1,6 +1,5 @@
 import { useEffect, Children } from 'react'
 import { useRouter } from 'next/router'
-import { Helmet } from 'react-helmet'
 
 import Head from 'next/head'
 
@@ -9,14 +8,13 @@ import LCanvas from '@/components/canvas/_layout'
 
 import useStore from '@/helpers/store'
 
-import { helmet } from '../config'
-
 import '../assets/styles/globals.css'
+import Header from '@/components/header'
 
 function SplitApp({ canvas, dom }) {
   return (
     <>
-      <Helmet {...helmet} />
+      <Header />
       {dom && <div className='mx-auto dom'>{dom}</div>}
       <LCanvas>{canvas}</LCanvas>
       <Preload />

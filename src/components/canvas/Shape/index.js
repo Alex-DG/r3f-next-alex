@@ -6,8 +6,7 @@ import { useFrame, useLoader } from 'react-three-fiber'
 import { useSpring, a } from 'react-spring/three'
 
 import logo from '@/assets/images/react.png'
-
-import { perlin3 } from '@/helpers/noise'
+import { perlin3 } from '@/utils/noise'
 
 const Shape = ({ ...props }) => {
   const texture = useLoader(THREE.TextureLoader, logo)
