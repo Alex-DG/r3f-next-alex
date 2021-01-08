@@ -1,40 +1,87 @@
-import useStore from '@/helpers/store'
-import MyBox from '@/components/canvas/MyBox/MyBox'
-import { Helmet } from 'react-helmet'
+import { Suspense } from 'react'
+import Head from 'next/head'
 
-const BoxesDom = () => {
-  return (
-    <h1 className='absolute z-10 w-full p-2 mx-auto text-3xl text-center text-gray-900 dark:text-gray-100'>
-      R3F Next Starter - Click on a box to navigate
-    </h1>
-  )
+import Bird from '@/components/canvas/bird'
+import Shape from '@/components/canvas/shape'
+import Controls from '@/components/canvas/controls'
+
+import Card from '@/components/card'
+
+import useStore from '@/helpers/store'
+import useWindowSize from '@/helpers/hooks/useWindowSize'
+
+const Birds = () => {
+  return new Array(6).fill().map((_, i) => {
+    const x = (7.5 + Math.random() * 15) * (Math.round(Math.random()) ? -1 : 1)
+    const y = -7.5 + Math.random() * 5
+    const z = -2.5 + Math.random() * 5
+    const bird = ['stork', 'parrot', 'flamingo'][Math.round(Math.random() * 2)]
+    let speed = bird === 'stork' ? 0.5 : bird === 'flamingo' ? 2 : 5
+    let factor =
+      bird === 'stork'
+        ? 0.5 + Math.random()
+        : bird === 'flamingo'
+        ? 0.25 + Math.random()
+        : 1 + Math.random() - 0.5
+
+    return (
+      <Bird
+        key={i}
+        position={[x, y, z]}
+        rotation={[0, x > 0 ? Math.PI : 0, 0]}
+        speed={speed}
+        factor={factor}
+        url={`/glb/${bird}.glb`}
+      />
+    )
+  })
 }
 
-const Dom = () => {
+const Canvas = () => {
+  const { width } = useWindowSize()
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  const showShape = !isMobile && width > 768
+
   return (
     <>
-      <Helmet title={'Welcome'} />
-      <BoxesDom />
+      <group position={[-19, 0, 0]}>
+        <ambientLight intensity={1} />
+        <pointLight position={[40, 40, 40]} />
+
+        <Suspense fallback={null}>
+          <Birds />
+        </Suspense>
+      </group>
+
+      {showShape && (
+        <group position={[-2, 0, 0]}>
+          <Suspense fallback={null}>
+            <Shape />
+          </Suspense>
+        </group>
+      )}
+
+      <Controls />
     </>
   )
 }
 
-const BoxGroup = () => {
-  return (
-    <group position={[0, 0, -20]}>
-      <MyBox position={[10, 0, -5]} />
-      <MyBox position={[-10, 0, -5]} />
-      <MyBox position={[0, 10, 0]} />
-      <MyBox position={[0, -5, 5]} />
-    </group>
-  )
-}
+const Dom = () => (
+  <>
+    <Head>
+      <title>Bonjour 🥖</title>
+    </Head>
+
+    <Card />
+  </>
+)
 
 const Page = () => {
   useStore.setState({ loading: false })
+
   return (
     <>
-      <BoxGroup r3f />
+      <Canvas r3f />
       <Dom />
     </>
   )

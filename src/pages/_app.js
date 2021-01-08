@@ -1,19 +1,22 @@
-import LCanvas from '@/components/canvas/_layout'
-import { useRouter } from 'next/router'
-import useStore from '@/helpers/store'
 import { useEffect, Children } from 'react'
+import { useRouter } from 'next/router'
+
+import Head from 'next/head'
+
 import Preload from '@/components/loading/loading'
-import { Helmet } from 'react-helmet'
-import { helmet } from '../config'
+import LCanvas from '@/components/canvas/_layout'
+
+import useStore from '@/helpers/store'
 
 import '../assets/styles/globals.css'
+import Header from '@/components/header'
 
 function SplitApp({ canvas, dom }) {
   return (
     <>
-      <Helmet {...helmet} />
+      <Header />
       {dom && <div className='mx-auto dom'>{dom}</div>}
-      <LCanvas>{canvas && <group>{canvas}</group>}</LCanvas>
+      <LCanvas>{canvas}</LCanvas>
       <Preload />
     </>
   )
@@ -22,8 +25,10 @@ function SplitApp({ canvas, dom }) {
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   let comp = [...Component().props.children]
+
   let r3fArr = []
   let compArr = []
+
   Children.forEach(comp, (child) => {
     if (child.props && child.props.r3f) {
       r3fArr.push(child)
@@ -36,10 +41,29 @@ function MyApp({ Component, pageProps }) {
     useStore.setState({ router: router })
   }, [router])
 
-  return r3fArr.length > 0 ? (
-    <SplitApp canvas={r3fArr} dom={compArr} />
-  ) : (
-    <Component {...pageProps} />
+  return (
+    <>
+      <Head>
+        <link
+          rel='preload'
+          href='/fonts/Movement/MovementV.ttf'
+          as='font'
+          crossOrigin=''
+        />
+        <link
+          rel='preload'
+          href='/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff'
+          as='font'
+          crossOrigin=''
+        />
+      </Head>
+
+      {r3fArr.length > 0 ? (
+        <SplitApp canvas={r3fArr} dom={compArr} />
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </>
   )
 }
 
