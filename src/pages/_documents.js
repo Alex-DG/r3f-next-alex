@@ -17,8 +17,12 @@ export default class MyDocument extends Document {
         })
 
       const initialProps = await Document.getInitialProps(ctx)
+      const { pathname } = ctx
+      const lang = pathname.startsWith('/jp') ? 'jp' : 'en'
+      const props = { ...initialProps, lang }
+
       return {
-        ...initialProps,
+        props,
         styles: (
           <>
             {initialProps.styles}
@@ -32,8 +36,10 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    const { lang } = this.props
+
     return (
-      <Html>
+      <Html {...{ lang }}>
         <Head />
         <body>
           <script src='noflash.js' />

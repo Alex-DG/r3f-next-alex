@@ -5,6 +5,7 @@ module.exports = {
     colors: {
       white: '#ffffff',
       'cool-dark': '#363537',
+      'cool-violet': 'blueviolet',
     },
     maxWidth: {
       170: '170px',
