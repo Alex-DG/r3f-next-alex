@@ -1,14 +1,20 @@
 import { Suspense } from 'react'
-import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import useDarkMode from 'use-dark-mode'
 
-import Bird from '@/components/canvas/bird'
-import Shape from '@/components/canvas/shape'
+import Toggle from '@/components/toggle'
 import Controls from '@/components/canvas/controls'
-
-import Card from '@/components/card'
 
 import useStore from '@/helpers/store'
 import useWindowSize from '@/helpers/hooks/useWindowSize'
+
+const Bird = dynamic(() => import('@/components/canvas/bird'), {
+  ssr: false,
+})
+
+const Shape = dynamic(() => import('@/components/canvas/shape'), {
+  ssr: false,
+})
 
 const Birds = () => {
   return new Array(6).fill().map((_, i) => {
@@ -66,23 +72,17 @@ const Canvas = () => {
   )
 }
 
-const Dom = () => (
-  <>
-    <Head>
-      <title>Bonjour 🥖</title>
-    </Head>
-
-    <Card />
-  </>
-)
-
 const Page = () => {
   useStore.setState({ loading: false })
+
+  const { value, toggle } = useDarkMode(false, {
+    classNameDark: 'dark',
+  })
 
   return (
     <>
       <Canvas r3f />
-      <Dom />
+      <Toggle onToggle={toggle} value={value} />
     </>
   )
 }

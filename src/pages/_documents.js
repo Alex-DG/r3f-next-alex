@@ -22,7 +22,7 @@ export default class MyDocument extends Document {
       const props = { ...initialProps, lang }
 
       return {
-        props,
+        ...props,
         styles: (
           <>
             {initialProps.styles}

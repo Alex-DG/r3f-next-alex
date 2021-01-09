@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import share from '../../assets/images/share.png'
 
 const name = 'Alexandre Di Guida'
 
@@ -24,16 +23,17 @@ const Header = () => {
         <meta name='description' content={description} />
         <meta
           name='keywords'
-          content='Software Engineer,Project Manager,Frontend,Developer,Mobile,App,Computer Scientist'
+          content='Software Engineer,Project Manager,Developer,Mobile App,Web App,Computer Scientist'
         />
         <meta name='robots' content='index,follow' />
-        <meta name='revisit-after' content='7 days' />
         <meta name='distribution' content='web' />
-
+        {/*
+      Facebook Open Graph meta tags
+        documentation: https://developers.facebook.com/docs/sharing/opengraph */}
         <meta name='og:title' content={title} />
         <meta name='og:type' content='site' />
         <meta name='og:url' content={url} />
-        <meta name='og:image' content={share} />
+        <meta name='og:image' content='/icons/share.png' />
         <meta name='og:site_name' content={title} />
         <meta name='og:description' content={description} />
 
@@ -69,15 +69,8 @@ const Header = () => {
           content='width=device-width, minimum-scale=1, initial-scale=1.0'
         />
         <meta name='theme-color' content='#000' />
-        <link rel='shortcut icon' href='/favicon.ico' />
-        {/*
-      Facebook Open Graph meta tags
-        documentation: https://developers.facebook.com/docs/sharing/opengraph */}
-        <meta property='og:title' content={title} />
-        <meta property='og:url' content={url} />
-        <meta property='og:image' content={share} />
-        <meta property='og:site_name' content={title} />
-        <meta property='og:description' content={description} />
+        <link rel='shortcut icon' href='/icons/favicon.ico' />
+
         {/*
       Twitter Summary card
         documentation: https://dev.twitter.com/cards/getting-started

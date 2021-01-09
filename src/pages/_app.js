@@ -1,23 +1,30 @@
 import { useEffect, Children } from 'react'
 import { useRouter } from 'next/router'
 
-import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
-import Preload from '@/components/loading/loading'
-import LCanvas from '@/components/canvas/_layout'
+import Header from '@/components/header'
+import Dom from '@/components/layouts/_dom'
 
 import useStore from '@/helpers/store'
 
-import '../assets/styles/globals.css'
-import Header from '@/components/header'
+import '@/styles/index.css'
+
+let LCanvas = null
+if (process.env.NODE_ENV === 'production') {
+  LCanvas = dynamic(() => import('@/components/layouts/_canvas'), {
+    ssr: false,
+  })
+} else {
+  LCanvas = require('@/components/layouts/_canvas').default
+}
 
 function SplitApp({ canvas, dom }) {
   return (
     <>
       <Header />
-      {dom && <div className='mx-auto dom'>{dom}</div>}
+      {dom && <Dom {...{ dom }} />}
       <LCanvas>{canvas}</LCanvas>
-      <Preload />
     </>
   )
 }
@@ -38,26 +45,11 @@ function MyApp({ Component, pageProps }) {
   })
 
   useEffect(() => {
-    useStore.setState({ router: router })
+    useStore.setState({ router })
   }, [router])
 
   return (
     <>
-      <Head>
-        <link
-          rel='preload'
-          href='/fonts/Movement/MovementV.ttf'
-          as='font'
-          crossOrigin=''
-        />
-        <link
-          rel='preload'
-          href='/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff'
-          as='font'
-          crossOrigin=''
-        />
-      </Head>
-
       {r3fArr.length > 0 ? (
         <SplitApp canvas={r3fArr} dom={compArr} />
       ) : (
