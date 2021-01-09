@@ -1,12 +1,14 @@
 import React from 'react'
 
-import { ToggleContainer } from './styles'
+import { Container } from './styles'
 
 const Toggle = ({ value, onToggle, ...props }) => {
   return (
-    <ToggleContainer>
+    <Container>
       <div id='toggle-btn'>
+        <label htmlFor='toggle'></label>
         <input
+          id='toggle'
           type='checkbox'
           onClick={() => {
             if (!value) {
@@ -21,7 +23,7 @@ const Toggle = ({ value, onToggle, ...props }) => {
         />
         <span></span>
       </div>
-    </ToggleContainer>
+    </Container>
   )
 }
 

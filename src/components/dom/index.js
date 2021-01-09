@@ -4,12 +4,10 @@ import useDarkMode from 'use-dark-mode'
 
 import { animated, useSpring, config } from 'react-spring'
 
-import alex from '@/assets/images/me.jpg'
-
-import GithubIcon from './icons/github'
-import TwitterIcon from './icons/twitter'
-import StackoverflowIcon from './icons/stackoverflow'
-import LinkedinIcon from './icons/linkedin'
+import GithubIcon from './svg/github'
+import TwitterIcon from './svg/twitter'
+import StackoverflowIcon from './svg/stackoverflow'
+import LinkedinIcon from './svg/linkedin'
 
 const socialUrl = {
   github: 'https://github.com/alex-dg',
@@ -19,7 +17,7 @@ const socialUrl = {
   wordpress: 'https://scottish-escapes.com/',
 }
 
-const CardContainer = styled(animated.section)`
+const Card = styled(animated.section)`
   z-index: 180;
 
   h1,
@@ -67,7 +65,8 @@ const CardContainer = styled(animated.section)`
     }
   }
 
-  p {
+  .details,
+  .links {
     margin-top: 1em;
   }
 `
@@ -94,7 +93,7 @@ export const Image = styled.img`
   transition: 0.3s;
 `
 
-const Card = () => {
+const Dom = ({ dom }) => {
   const { value } = useDarkMode(false, {
     classNameDark: 'dark',
   })
@@ -115,15 +114,15 @@ const Card = () => {
   }, [])
 
   return (
-    <CardContainer
+    <Card
       style={fadeStyles}
       className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-cool-dark'
     >
       <Figure>
-        <Image src={alex} alt='Alex' loading='lazy' />
+        <Image src='/img/me.jpg' alt='Alex' loading='lazy' />
       </Figure>
 
-      <p className='details'>
+      <div className='details'>
         <h1 className='text-cool-dark name dark:text-white'>
           Alexandre Di Guida
         </h1>
@@ -135,31 +134,47 @@ const Card = () => {
           Web + Mobile App
         </h2>
         <h2 className='text-cool-dark dev dark:text-white'>[ Developer ]</h2>
-      </p>
+      </div>
 
-      <p className='links'>
-        <a href={socialUrl.twitter} target='_blank' rel='noopener noreferrer'>
+      <div className='links'>
+        <a
+          href={socialUrl.twitter}
+          aria-label='Twitter'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <TwitterIcon darkMode={value} />
         </a>
 
-        <a href={socialUrl.github} target='_blank' rel='noopener noreferrer'>
+        <a
+          href={socialUrl.github}
+          aria-label='Github'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <GithubIcon darkMode={value} />
         </a>
 
         <a
           href={socialUrl.stackoverflow}
+          aria-label='Stackoverflow'
           target='_blank'
           rel='noopener noreferrer'
         >
           <StackoverflowIcon darkMode={value} />
         </a>
 
-        <a href={socialUrl.linkedin} target='_blank' rel='noopener noreferrer'>
+        <a
+          href={socialUrl.linkedin}
+          aria-label='Linkedin'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <LinkedinIcon darkMode={value} />
         </a>
-      </p>
-    </CardContainer>
+      </div>
+    </Card>
   )
 }
 
-export default Card
+export default Dom

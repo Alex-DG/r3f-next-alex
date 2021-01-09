@@ -6,7 +6,7 @@ const Colors = {
   TOGGLE_SHADOW: '#d9d9d9',
 }
 
-export const ToggleContainer = styled.div`
+export const Container = styled.div`
   position: absolute;
   z-index: 999;
   top: 0;
