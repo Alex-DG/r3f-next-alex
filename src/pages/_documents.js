@@ -36,11 +36,28 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const { lang } = this.props
-
+    const trackingId = process.env.GOOGLE_TRACKING_ID
     return (
-      <Html {...{ lang }}>
-        <Head />
+      <Html lang={this.props.lang || 'en'}>
+        {trackingId && (
+          <Head>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}
+            />
+
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', ${trackingId});
+        `,
+              }}
+            />
+          </Head>
+        )}
         <body>
           <script src='noflash.js' />
           <Main />
