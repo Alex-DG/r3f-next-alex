@@ -119,7 +119,7 @@ const Dom = ({ dom }) => {
       className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-cool-dark'
     >
       <Figure>
-        <Image src='/img/me.jpg' alt='Alex' loading='lazy' />
+        <Image src='/img/me.png' alt='Alex' loading='lazy' />
       </Figure>
 
       <div className='details'>

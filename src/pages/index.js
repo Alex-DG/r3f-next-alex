@@ -4,17 +4,19 @@ import useDarkMode from 'use-dark-mode'
 
 import Toggle from '@/components/toggle'
 import Controls from '@/components/canvas/controls'
+import Bird from '@/components/canvas/bird'
+import Shape from '@/components/canvas/shape'
 
 import useStore from '@/helpers/store'
 import useWindowSize from '@/helpers/hooks/useWindowSize'
 
-const Bird = dynamic(() => import('@/components/canvas/bird'), {
-  ssr: false,
-})
+// const Bird = dynamic(() => import('@/components/canvas/bird'), {
+//   ssr: false,
+// })
 
-const Shape = dynamic(() => import('@/components/canvas/shape'), {
-  ssr: false,
-})
+// const Shape = dynamic(() => import('@/components/canvas/shape'), {
+//   ssr: false,
+// })
 
 const Birds = () => {
   return new Array(6).fill().map((_, i) => {
