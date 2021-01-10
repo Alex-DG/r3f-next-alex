@@ -9,7 +9,7 @@ const Toggle = ({ value, onToggle, ...props }) => {
         <label htmlFor='toggle'></label>
         <input
           id='toggle'
-          name='toggle'
+          name='toggleName'
           type='checkbox'
           onClick={() => {
             if (!value) {
