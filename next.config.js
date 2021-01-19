@@ -19,8 +19,12 @@ const withTM = require('next-transpile-modules')(
 )
 
 const prod = process.env.NODE_ENV === 'production'
+const trackingId = process.env.GOOGLE_TRACKING_ID || ''
 
 const nextConfig = {
+  env: {
+    GOOGLE_TRACKING_ID: trackingId,
+  },
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US',
