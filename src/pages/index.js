@@ -47,8 +47,9 @@ const Birds = () => {
 
 const Canvas = () => {
   const { width } = useWindowSize()
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-  const showShape = !isMobile && width > 768
+  const showShape = width > 767
+
+  console.log({ showShape, width })
 
   return (
     <>
