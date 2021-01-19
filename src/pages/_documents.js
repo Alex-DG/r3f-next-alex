@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const trackingId = process.env.GOOGLE_TRACKING_ID
+    const trackingId = process.env.NEXT_GOOGLE_TRACKING_ID
     return (
       <Html lang={this.props.lang || 'en'}>
         {trackingId && (

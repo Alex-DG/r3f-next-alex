@@ -23,7 +23,7 @@ const trackingId = process.env.GOOGLE_TRACKING_ID || ''
 
 const nextConfig = {
   env: {
-    GOOGLE_TRACKING_ID: trackingId,
+    NEXT_GOOGLE_TRACKING_ID: trackingId,
   },
   i18n: {
     locales: ['en-US'],

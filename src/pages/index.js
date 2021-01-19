@@ -49,8 +49,6 @@ const Canvas = () => {
   const { width } = useWindowSize()
   const showShape = width > 767
 
-  console.log({ showShape, width })
-
   return (
     <>
       <group position={[-19, 0, 0]}>
