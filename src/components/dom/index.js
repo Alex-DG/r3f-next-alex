@@ -65,7 +65,7 @@ const Card = styled(animated.section)`
 
   .details,
   .links {
-    margin-top: 1em;
+    margin-top: 1.5em;
   }
 `
 
