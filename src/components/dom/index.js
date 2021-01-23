@@ -6,23 +6,21 @@ import { animated, useSpring, config } from 'react-spring'
 
 import GithubIcon from './svg/github'
 import TwitterIcon from './svg/twitter'
-import StackoverflowIcon from './svg/stackoverflow'
 import LinkedinIcon from './svg/linkedin'
 
 const socialUrl = {
   github: 'https://github.com/alex-dg',
   linkedin: 'https://www.linkedin.com/in/alexandre-di-guida-17650698/',
   twitter: 'https://twitter.com/Alex_dg_uk',
-  stackoverflow: 'https://stackoverflow.com/users/2493252/alexdg',
-  wordpress: 'https://scottish-escapes.com/',
 }
 
 const Card = styled(animated.section)`
   z-index: 180;
+  width: fit-content;
 
   h1,
   h2 {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
 
   .details {
@@ -67,7 +65,7 @@ const Card = styled(animated.section)`
 
   .details,
   .links {
-    margin-top: 1em;
+    margin-top: 1.5em;
   }
 `
 
@@ -83,7 +81,7 @@ export const Image = styled.img`
   display: block;
 
   height: auto;
-  max-width: 170px !important;
+  max-width: 190px !important;
 
   margin: 0 auto;
 
@@ -116,7 +114,7 @@ const Dom = ({ dom }) => {
   return (
     <Card
       style={fadeStyles}
-      className='absolute left-0 right-0 z-20 p-5 m-0 m-auto bg-white shadow rounded-md w-60 top-1/4 md:m-5 md:top-0 dark:bg-cool-dark'
+      className='absolute left-0 right-0 z-20 p-10 m-0 m-auto bg-white shadow rounded-md top-1/4 md:m-12 md:top-0 dark:bg-cool-dark'
     >
       <Figure>
         <Image src='/img/me.png' alt='Alex' loading='lazy' />
@@ -153,15 +151,6 @@ const Dom = ({ dom }) => {
           rel='noopener noreferrer'
         >
           <GithubIcon darkMode={value} />
-        </a>
-
-        <a
-          href={socialUrl.stackoverflow}
-          aria-label='Stackoverflow'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <StackoverflowIcon darkMode={value} />
         </a>
 
         <a
