@@ -20,7 +20,7 @@ const Dom = ({ dom }) => {
           crossOrigin=''
         />
 
-        <title>Bonjour 🥖</title>
+        <title>Bonjour</title>
       </Head>
 
       {dom}
