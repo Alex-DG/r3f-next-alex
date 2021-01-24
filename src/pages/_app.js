@@ -11,6 +11,7 @@ import useStore from '@/helpers/store'
 import '@/styles/index.css'
 
 let LCanvas = null
+
 if (process.env.NODE_ENV === 'production') {
   LCanvas = dynamic(() => import('@/components/layouts/_canvas'), {
     ssr: false,
@@ -31,6 +32,7 @@ function SplitApp({ canvas, dom }) {
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
+
   let comp = [...Component().props.children]
 
   let r3fArr = []

@@ -31,7 +31,6 @@ export const Container = styled.div`
     right: 0px;
     bottom: 0px;
     margin: 0px;
-    cursor: pointer;
     opacity: 0;
     z-index: 2;
   }

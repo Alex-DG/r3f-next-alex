@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import useDarkMode from 'use-dark-mode'
 
 import { animated, useSpring, config } from 'react-spring'
 
@@ -15,12 +14,30 @@ const socialUrl = {
 }
 
 const Card = styled(animated.section)`
+  transition: all 0.5 linear;
+
   z-index: 180;
   width: fit-content;
+
+  margin: 3rem;
+
+  @media only screen and (max-width: 48em) {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: 0 auto;
+  }
+
+  /** Galaxy fold */
+  @media only screen and (max-width: 280px) {
+    border-radius: 0;
+    height: 100%;
+  }
 
   h1,
   h2 {
     font-size: 1.5em;
+    text-align: center;
   }
 
   .details {
@@ -52,7 +69,20 @@ const Card = styled(animated.section)`
     align-items: center;
 
     a {
-      cursor: pointer;
+      cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png')
+          39 39,
+        auto;
+
+      @media (prefers-color-scheme: dark) {
+        svg > path {
+          fill: white;
+        }
+      }
+      @media (prefers-color-scheme: light) {
+        svg > path {
+          fill: #363537;
+        }
+      }
     }
 
     svg {
@@ -92,10 +122,6 @@ export const Image = styled.img`
 `
 
 const Dom = ({ dom }) => {
-  const { value } = useDarkMode(false, {
-    classNameDark: 'dark',
-  })
-
   const [show, set] = useState(false)
 
   const fadeStyles = useSpring({
@@ -114,7 +140,7 @@ const Dom = ({ dom }) => {
   return (
     <Card
       style={fadeStyles}
-      className='absolute left-0 right-0 z-20 p-10 m-0 m-auto bg-white shadow rounded-md top-1/4 md:m-12 md:top-0 dark:bg-cool-dark'
+      className='absolute left-0 right-0 z-20 p-10 bg-white shadow rounded-md dark:bg-cool-dark'
     >
       <Figure>
         <Image src='/img/me.png' alt='Alex' loading='lazy' />
@@ -141,7 +167,7 @@ const Dom = ({ dom }) => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          <TwitterIcon darkMode={value} />
+          <TwitterIcon />
         </a>
 
         <a
@@ -150,7 +176,7 @@ const Dom = ({ dom }) => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          <GithubIcon darkMode={value} />
+          <GithubIcon />
         </a>
 
         <a
@@ -159,7 +185,7 @@ const Dom = ({ dom }) => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          <LinkedinIcon darkMode={value} />
+          <LinkedinIcon />
         </a>
       </div>
     </Card>

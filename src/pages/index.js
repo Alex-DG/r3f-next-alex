@@ -1,22 +1,11 @@
 import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
-import useDarkMode from 'use-dark-mode'
 
-import Toggle from '@/components/toggle'
 import Controls from '@/components/canvas/controls'
 import Bird from '@/components/canvas/bird'
 import Shape from '@/components/canvas/shape'
 
 import useStore from '@/helpers/store'
 import useWindowSize from '@/helpers/hooks/useWindowSize'
-
-// const Bird = dynamic(() => import('@/components/canvas/bird'), {
-//   ssr: false,
-// })
-
-// const Shape = dynamic(() => import('@/components/canvas/shape'), {
-//   ssr: false,
-// })
 
 const Birds = () => {
   return new Array(6).fill().map((_, i) => {
@@ -47,7 +36,9 @@ const Birds = () => {
 
 const Canvas = () => {
   const { width } = useWindowSize()
-  const showShape = width > 767
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+  const hide = (isMobile && width <= 768) || width < 767
 
   return (
     <>
@@ -60,8 +51,8 @@ const Canvas = () => {
         </Suspense>
       </group>
 
-      {showShape && (
-        <group position={[-2, 0, 0]}>
+      {!hide && (
+        <group position={[-1.8, 0, 0]}>
           <Suspense fallback={null}>
             <Shape />
           </Suspense>
@@ -76,14 +67,10 @@ const Canvas = () => {
 const Page = () => {
   useStore.setState({ loading: false })
 
-  const { value, toggle } = useDarkMode(false, {
-    classNameDark: 'dark',
-  })
-
   return (
     <>
       <Canvas r3f />
-      <Toggle onToggle={toggle} value={value} />
+      <div></div>
     </>
   )
 }
