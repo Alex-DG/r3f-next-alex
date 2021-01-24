@@ -34,7 +34,7 @@ const Shape = ({ ...props }) => {
           1 +
             0.3 *
               perlin3(
-                p.x * inputScale + time,
+                p.x * inputScale + time * (expand ? 1 : 2),
                 p.y * inputScale - time,
                 p.z * inputScale
               )
@@ -50,7 +50,7 @@ const Shape = ({ ...props }) => {
   const handleExpand = () => setExpand(!expand)
 
   const { scale } = useSpring({
-    scale: expand ? [1.6, 1.6, 1.6] : [1.9, 1.9, 1.9],
+    scale: expand ? [1.6, 1.6, 1.6] : [2.3, 2.3, 2.3],
   })
 
   return (
@@ -58,7 +58,7 @@ const Shape = ({ ...props }) => {
       <a.mesh onClick={handleExpand} scale={scale} {...props}>
         <sphereGeometry
           attach='geometry'
-          args={[1.0, 38, 38]}
+          args={[1.0, 37, 37]}
           ref={sphereGeometryRef}
         />
         <meshBasicMaterial

@@ -22,7 +22,7 @@ const LCanvas = ({ children }) => {
         depth: false,
         alpha: false,
       }}
-      camera={{ position: [0, 0, 0], near: 5, far: 100 }}
+      camera={{ position: [0, 0, 0] }}
       pixelRatio={1}
       onCreated={({ gl }) => {
         gl.setClearColor(new THREE.Color(0xf9fafb))

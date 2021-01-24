@@ -26,5 +26,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png')
+        39 39,
+      auto;
   }
 }
