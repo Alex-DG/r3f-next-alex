@@ -36,14 +36,13 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const trackingId = process.env.NEXT_GOOGLE_TRACKING_ID
     return (
       <Html lang={this.props.lang || 'en'}>
-        {trackingId && (
+        {process.env.NEXT_PUBLIC_GOOGLE && (
           <Head>
             <script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}
             />
 
             <script
@@ -52,7 +51,7 @@ export default class MyDocument extends Document {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${trackingId});
+            gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE});
         `,
               }}
             />

@@ -3,7 +3,9 @@
 /* eslint-disable no-undef */
 const path = require('path')
 const plugins = require('next-compose-plugins')
+
 const webpack = require('webpack')
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -19,12 +21,8 @@ const withTM = require('next-transpile-modules')(
 )
 
 const prod = process.env.NODE_ENV === 'production'
-const trackingId = process.env.GOOGLE_TRACKING_ID || ''
 
 const nextConfig = {
-  env: {
-    NEXT_GOOGLE_TRACKING_ID: trackingId,
-  },
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US',

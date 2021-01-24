@@ -7,8 +7,7 @@ const Controls = ({ enableZoom = false, autoRotate = false }) => {
 
   useFrame(() => {
     camera.position.x = 5
-    camera.position.y = 0
-    camera.position.z = 0
+    camera.position.y = camera.position.z = 0
   })
 
   return (
