@@ -18,6 +18,7 @@ const Card = styled(animated.section)`
 
   z-index: 180;
   width: fit-content;
+  min-width: 18em;
 
   margin: 3rem;
 
@@ -28,10 +29,11 @@ const Card = styled(animated.section)`
     margin: 0 auto;
   }
 
-  /** Galaxy fold */
-  @media only screen and (max-width: 280px) {
+  /** Galaxy fold ~ iphone SE */
+  @media only screen and (max-width: 320px) {
     border-radius: 0;
     height: 100%;
+    width: 100%;
   }
 
   h1,
