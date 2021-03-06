@@ -16,6 +16,8 @@ const socialUrl = {
 const Card = styled(animated.section)`
   transition: all 0.5 linear;
 
+  background: linear-gradient(45deg, dimgray, transparent);
+
   z-index: 180;
   width: fit-content;
   min-width: 18em;
@@ -75,7 +77,7 @@ const Card = styled(animated.section)`
           39 39,
         auto;
 
-      @media (prefers-color-scheme: dark) {
+      /* @media (prefers-color-scheme: dark) {
         svg > path {
           fill: white;
         }
@@ -84,7 +86,11 @@ const Card = styled(animated.section)`
         svg > path {
           fill: #363537;
         }
-      }
+      } */
+    }
+
+    svg > path {
+      fill: white;
     }
 
     svg {
@@ -138,28 +144,24 @@ const Dom = ({ dom }) => {
     const timeout = setTimeout(() => !show && set(true), 1000)
     return () => clearTimeout(timeout)
   }, [])
-
+  // linear-gradient(45deg, black, transparent)
   return (
     <Card
       style={fadeStyles}
-      className='absolute left-0 right-0 z-20 p-10 bg-white shadow rounded-md dark:bg-cool-dark'
+      className='absolute left-0 right-0 z-20 p-10 shadow rounded-md'
     >
       <Figure>
         <Image src='/img/me.png' alt='Alex' loading='lazy' />
       </Figure>
 
       <div className='details'>
-        <h1 className='text-cool-dark name dark:text-white'>
-          Alexandre Di Guida
-        </h1>
+        <h1 className='text-white name'>Alexandre Di Guida</h1>
 
-        <h2 className='role text-cool-dark dark:text-white'>
+        <h2 className='text-white role'>
           {'< '}Front End{' >'}
         </h2>
-        <h2 className='text-cool-dark role dark:text-white'>
-          Web + Mobile App
-        </h2>
-        <h2 className='text-cool-dark dev dark:text-white'>[ Developer ]</h2>
+        <h2 className='text-white role'>Web + Mobile App</h2>
+        <h2 className='text-white dev'>[ Developer ]</h2>
       </div>
 
       <div className='links'>

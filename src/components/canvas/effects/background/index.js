@@ -49,7 +49,7 @@ const config = {
 
 const ParticlesBackground = () => {
   return (
-    <div id='particle-field' className='relative w-screen h-screen'>
+    <div className='w-screen h-screen'>
       <ParticleField {...{ config }} />
     </div>
   )

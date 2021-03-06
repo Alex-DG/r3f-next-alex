@@ -6,12 +6,12 @@ import { ContactShadows } from '@react-three/drei'
 import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
 import ParticlesBackground from './background'
-import Rig from './rig'
+// import Rig from './rig'
 
 const Effects = () => {
   return (
     <>
-      <HTML prepend fullscreen zIndexRange={[100, 0]}>
+      <HTML style={{ top: 0, left: 0 }} prepend fullscreen>
         <ParticlesBackground />
       </HTML>
 
@@ -33,8 +33,6 @@ const Effects = () => {
         <Noise opacity={0.02} />
         <Vignette eskil={false} offset={0.1} darkness={0.4} />
       </EffectComposer>
-
-      <Rig />
     </>
   )
 }
