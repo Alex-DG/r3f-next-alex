@@ -30,4 +30,8 @@
         39 39,
       auto;
   }
+
+  canvas {
+    outline: none;
+  }
 }

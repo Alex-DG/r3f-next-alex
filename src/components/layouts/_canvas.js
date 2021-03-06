@@ -28,11 +28,11 @@ const LCanvas = ({ children }) => {
         gl.setClearColor(new THREE.Color(0xf9fafb))
       }}
     >
+      {children}
+
       <Suspense fallback={null}>
         <Effects />
       </Suspense>
-
-      {children}
     </Canvas>
   )
 }

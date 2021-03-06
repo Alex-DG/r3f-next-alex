@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
 
-import Controls from '@/components/canvas/controls'
 import Bird from '@/components/canvas/bird'
 import Shape from '@/components/canvas/shape'
 
 import useStore from '@/helpers/store'
 import useWindowSize from '@/helpers/hooks/useWindowSize'
+import ParticlesBackground from '@/components/canvas/effects/background'
 
 const Birds = () => {
   return new Array(6).fill().map((_, i) => {
@@ -42,7 +42,7 @@ const Canvas = () => {
 
   return (
     <>
-      <group position={[-19, 0, 0]}>
+      <group position={[0, 0, -20]}>
         <ambientLight intensity={1} />
         <pointLight position={[40, 40, 40]} />
 
@@ -52,14 +52,14 @@ const Canvas = () => {
       </group>
 
       {!hide && (
-        <group position={[-1.8, 0, 0]}>
+        <group style={{ zIndex: 20 }} position={[0, 0, -6]}>
           <Suspense fallback={null}>
             <Shape />
           </Suspense>
         </group>
       )}
 
-      <Controls />
+      {/* <Controls /> */}
     </>
   )
 }
@@ -70,7 +70,7 @@ const Page = () => {
   return (
     <>
       <Canvas r3f />
-      <div></div>
+      <div />
     </>
   )
 }

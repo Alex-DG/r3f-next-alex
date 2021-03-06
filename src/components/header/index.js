@@ -2,9 +2,9 @@ import Head from 'next/head'
 
 const name = 'Alexandre Di Guida'
 
-const title = 'Alex DG ~ Frontend Web+Mobile App Developer'
+const title = 'Alex DG ~ Software Developer - Front End & Mobile App'
 const url = 'https://alexdiguida.com/'
-const description = `${name}, French web and mobile app developer with more than 6 years of professionnal experience in the IT industry. I worked in France, England and in Scotland on web and mobile app technologies.`
+const description = `${name}, Software Developer specialised in Front End and Mobile App development with more than 6 years of professionnal experience in the IT industry. Keen to learn and share about new technologies!`
 
 const Header = () => {
   return (
